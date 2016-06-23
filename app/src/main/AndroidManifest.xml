@@ -9,12 +9,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:name=".App"
+        android:theme="@style/AppTheme.NoActionBar">
 
-        <!--Fabric API KEY-->
-        <meta-data
-            android:name = "io.fabric.ApiKey"
-            android:value = "45bd278880ab054320fca375cd4fb7fe1012c540" />
+
 
 
         <activity android:name=".LoginActivity">
@@ -25,7 +23,10 @@
         </activity>
 
 
-
+        <!--Fabric API KEY-->
+        <meta-data
+            android:name = "io.fabric.ApiKey"
+            android:value = "45bd278880ab054320fca375cd4fb7fe1012c540" />
 
     </application>
 

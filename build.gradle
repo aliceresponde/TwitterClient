@@ -31,7 +31,8 @@ ext{
 
     suppotLibraryVersion = '24.0.0'
 
-    twitterVersion = '1.13.3@aar'
+//    twitterVersion = '1.13.3@aar'
+    twitterVersion = '4.0.0-alpha'
     butterknifeVersion = '7.0.1'
     eventBusVersion = '3.0.0'
     glideVersion  = '3.6.1'

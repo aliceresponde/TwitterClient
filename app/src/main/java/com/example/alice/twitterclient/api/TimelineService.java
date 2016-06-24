@@ -1,0 +1,27 @@
+package com.example.alice.twitterclient.api;
+
+import android.content.Intent;
+import android.content.pm.LauncherApps;
+
+import com.twitter.sdk.android.core.models.Tweet;
+
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.http.GET;
+import retrofit.http.Query;
+
+/**
+ * Created by alice on 6/23/16.
+ * Service
+ */
+
+public interface TimelineService {
+    @GET("/1.1/statuses/home_timeline.json")
+    void homeTimeline(@Query("count") Integer count,
+                      @Query("trinm_user") Boolean trinm_user,
+                      @Query("exclude_replies") Boolean exclude_replies,
+                      @Query("contributor_details") Boolean contributor_details,
+                      @Query("include_entities") Boolean include_entities,
+                      Callback<List<Tweet>> callback);
+}

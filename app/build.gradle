@@ -97,9 +97,9 @@ dependencies {
     compile "javax.annotation:jsr250-api:$rootProject.ext.jsr250Version"
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
 
-    compile "org.webjars.bower:twitter:$rootProject.ext.twitterVersion"
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    compile "org.webjars.bower:twitter:$rootProject.ext.twitterVersion"
     compile "org.greenrobot:eventbus:$rootProject.ext.eventBusVersion"
 
 

@@ -39,7 +39,7 @@ ext{
 
 
     //dagger II
-    daggerVersion = '2.0.1'
+    daggerVersion = '2.5'
     jsr250Version = '1.0'
 
 

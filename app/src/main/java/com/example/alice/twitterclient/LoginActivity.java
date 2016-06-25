@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 
 import com.crashlytics.android.Crashlytics;
-import com.example.alice.twitterclient.main.MainActivity;
+import com.example.alice.twitterclient.main.ui.MainActivity;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -18,7 +18,6 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.fabric.sdk.android.Fabric;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,9 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig), new Crashlytics());
-        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
         //verify sesion
@@ -68,6 +67,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void navigateToMainScreen() {
         Intent intent = new Intent(this , MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

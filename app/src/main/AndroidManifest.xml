@@ -14,17 +14,18 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name=".main.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- Fabric API KEY -->
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="45bd278880ab054320fca375cd4fb7fe1012c540" />
-
-        <activity android:name=".main.MainActivity"></activity>
     </application>
 
 </manifest>

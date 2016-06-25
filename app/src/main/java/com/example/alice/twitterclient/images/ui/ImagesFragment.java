@@ -38,7 +38,7 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
     FrameLayout container;
 
 
-    //to inject
+    //to inject para no inicializarlo en el cosntructor, sin esta injeccion se presentara un error en tiempo de  ejecucion
     private ImagesPresenter presenter;
     private ImagesAdapter adapter;
 

@@ -82,8 +82,7 @@ dependencies {
     compile "org.webjars.bower:twitter:$rootProject.ext.twitterVersion"
     compile "org.greenrobot:eventbus:$rootProject.ext.eventBusVersion"
 
-
-
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
+//    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
+    compile 'com.android.support:support-v4:24.0.0'
     testCompile 'junit:junit:4.12'
 }

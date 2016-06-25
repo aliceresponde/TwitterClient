@@ -7,14 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.alice.twitterclient.LoginActivity;
 import com.example.alice.twitterclient.R;
 import com.example.alice.twitterclient.hashtags.HashTagsFragment;
-import com.example.alice.twitterclient.images.ImagesFragment;
+import com.example.alice.twitterclient.images.ui.ImagesFragment;
 import com.example.alice.twitterclient.main.adapters.MainSectionPagerAdapter;
 import com.twitter.sdk.android.Twitter;
 

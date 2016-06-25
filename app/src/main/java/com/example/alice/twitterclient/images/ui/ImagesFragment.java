@@ -1,4 +1,4 @@
-package com.example.alice.twitterclient.images;
+package com.example.alice.twitterclient.images.ui;
 
 
 import android.os.Bundle;

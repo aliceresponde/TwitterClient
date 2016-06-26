@@ -59,6 +59,7 @@ public class ImagesRepositoryImpl implements ImagesRepository {
                         String imageURL  =  currentPhoto.mediaUrl;
 
                         tweetmodel.setImageURL(imageURL);
+                        images.add(tweetmodel);
 
                     }
                 }

@@ -1,8 +1,15 @@
 package com.example.alice.twitterclient;
 
 import android.app.Application;
-import android.os.Build;
+import android.support.v4.app.Fragment;
 
+
+import com.example.alice.twitterclient.images.di.DaggerImagesComponent;
+import com.example.alice.twitterclient.images.di.ImagesComponent;
+import com.example.alice.twitterclient.images.di.ImagesModule;
+import com.example.alice.twitterclient.images.ui.ImagesView;
+import com.example.alice.twitterclient.images.ui.adapters.OnItemClickListener;
+import com.example.alice.twitterclient.libs.di.LibsModule;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 
@@ -22,5 +29,21 @@ public class App extends Application {
     private void initFabric() {
         TwitterAuthConfig authConfig = new TwitterAuthConfig(BuildConfig.TWITTER_KEY , BuildConfig.TWITTER_SECRET );
         Fabric.with(this , new Twitter(authConfig));
+    }
+
+    /**
+     *
+     * @param fragment - el target del componente  ---> ImagesFragment
+     * @param view     - intefaz q implementa el target
+     * @param clickListener  - Interfaz q implementa el target
+     * @return
+     */
+    public ImagesComponent getImagesComponent(Fragment fragment  , ImagesView view , OnItemClickListener clickListener){
+        return DaggerImagesComponent
+                .builder()
+                .libsModule(new LibsModule(fragment))
+                .imagesModule(new ImagesModule(view, clickListener))
+                .build();
+
     }
 }

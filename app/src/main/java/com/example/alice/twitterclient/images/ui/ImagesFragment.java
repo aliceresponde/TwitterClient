@@ -7,19 +7,27 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.alice.twitterclient.App;
 import com.example.alice.twitterclient.R;
 import com.example.alice.twitterclient.entities.Image;
 import com.example.alice.twitterclient.images.ImagesPresenter;
+import com.example.alice.twitterclient.images.di.ImagesComponent;
 import com.example.alice.twitterclient.images.ui.adapters.ImagesAdapter;
 import com.example.alice.twitterclient.images.ui.adapters.OnItemClickListener;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterApiClient;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -39,8 +47,11 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
 
 
     //to inject para no inicializarlo en el cosntructor, sin esta injeccion se presentara un error en tiempo de  ejecucion
-    private ImagesPresenter presenter;
-    private ImagesAdapter adapter;
+    @Inject
+    ImagesAdapter adapter;
+    @Inject
+    ImagesPresenter presenter;
+
 
     public ImagesFragment() {
         // Required empty public constructor
@@ -53,7 +64,27 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
 
         View view = inflater.inflate(R.layout.fragment_content, container, false);
         ButterKnife.bind(this, view);
+
+        setupInjection();
+
+        setupRecyclerView();
+
+        presenter.getImagesTweets();
+
         return view;
+    }
+
+    private void setupRecyclerView() {
+        recyclerView.setLayoutManager( new GridLayoutManager(getActivity(),2));
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    private void setupInjection() {
+        App app =  (App) getActivity().getApplication();
+        ImagesComponent imagesComponent = app.getImagesComponent(this, this, this);
+        imagesComponent.inject(this);
+
     }
 
 //    ============================Presenter ciclo de vida =========================================
@@ -105,6 +136,8 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
 
     @Override
     public void setContent(List<Image> items) {
+
+        Log.i(ImagesFragment.class.getSimpleName(), "setContent" + items.size());
         adapter.setItems(items);
     }
 

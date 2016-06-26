@@ -2,7 +2,8 @@ package com.example.alice.twitterclient.libs.di;
 
 
 
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -25,6 +26,11 @@ import dagger.Provides;
 @Module
 public class LibsModule {
     private Fragment fragment;
+
+
+    public LibsModule(Fragment fragment) {
+        this.fragment = fragment;
+    }
 
     /**
      * Crea un new GreenRobotsEventBus a partir del mio

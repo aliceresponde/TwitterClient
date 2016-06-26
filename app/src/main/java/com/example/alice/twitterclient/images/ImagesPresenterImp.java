@@ -1,5 +1,6 @@
 package com.example.alice.twitterclient.images;
 
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.alice.twitterclient.images.events.ImagesEvent;
@@ -29,12 +30,15 @@ public class ImagesPresenterImp  implements ImagesPresenter {
 
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
+        Log.i(ImagesPresenterImp.class.getSimpleName(), "onResume  -  register");
         eventBus.register(this);
     }
 
     @Override
     public void onPause() {
+        Log.i(ImagesPresenterImp.class.getSimpleName(), "onResume  -  unregister");
         eventBus.unregister(this);
     }
 
@@ -48,6 +52,7 @@ public class ImagesPresenterImp  implements ImagesPresenter {
      */
     @Override
     public void getImagesTweets() {
+        Log.i(ImagesPresenterImp.class.getSimpleName(), "getImagesTweets");
         if (view !=null){
             view.hideImages();
             view.showProgressBar();
@@ -65,12 +70,13 @@ public class ImagesPresenterImp  implements ImagesPresenter {
     public void onEventMainThread(ImagesEvent event) {
 
         String errorMesagge = event.getError();
+        Log.i(ImagesPresenterImp.class.getSimpleName(), "onEventMainThread  ");
 
         if (view !=null){
             view.hideProgessBar();
             view.showImages();
 
-            if (errorMesagge!=null){
+            if (errorMesagge != null){
                 view.onError(errorMesagge);
             }else{
                 view.setContent(event.getImages());

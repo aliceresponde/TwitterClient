@@ -72,7 +72,7 @@ public class ImagesRepositoryImpl implements ImagesRepository {
                     }
                 });
 
-                post(images)
+                post(images);
 
             }
 

@@ -1,18 +1,17 @@
-package com.example.alice.twitterclient.images.di;
+package com.example.alice.twitterclient.hashtags.di;
 
 import com.example.alice.twitterclient.api.CustomTwitterApiClient;
-import com.example.alice.twitterclient.entities.Image;
-import com.example.alice.twitterclient.images.ImageRepository;
-import com.example.alice.twitterclient.images.ImagesInteractor;
-import com.example.alice.twitterclient.images.ImagesInteractorImpl;
-import com.example.alice.twitterclient.images.ImagesPresenter;
-import com.example.alice.twitterclient.images.ImagesPresenterImp;
-import com.example.alice.twitterclient.images.ImagesRepositoryImpl;
-import com.example.alice.twitterclient.images.ui.ImagesView;
-import com.example.alice.twitterclient.images.ui.adapters.ImagesAdapter;
-import com.example.alice.twitterclient.images.ui.adapters.OnItemClickListener;
+import com.example.alice.twitterclient.entities.Hashtag;
+import com.example.alice.twitterclient.hashtags.HashtagInteractor;
+import com.example.alice.twitterclient.hashtags.HashtagInteractorImpl;
+import com.example.alice.twitterclient.hashtags.HashtagPresenter;
+import com.example.alice.twitterclient.hashtags.HashtagPresenterImp;
+import com.example.alice.twitterclient.hashtags.HashtagRepository;
+import com.example.alice.twitterclient.hashtags.HashtagRepositoryImpl;
+import com.example.alice.twitterclient.hashtags.ui.HashtagView;
+import com.example.alice.twitterclient.hashtags.ui.adapters.HashtagAdapter;
+import com.example.alice.twitterclient.hashtags.ui.adapters.OnItemClickListener;
 import com.example.alice.twitterclient.libs.base.EventBus;
-import com.example.alice.twitterclient.libs.base.ImageLoader;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Session;
 
@@ -31,11 +30,11 @@ import dagger.Provides;
  */
 
 @Module
-public class ImagesModule {
-    private ImagesView view;
+public class HashtagModule {
+    private HashtagView view;
     private OnItemClickListener clickListener;
 
-    public ImagesModule(ImagesView view, OnItemClickListener clickListener) {
+    public HashtagModule(HashtagView view, OnItemClickListener clickListener) {
         this.view = view;
         this.clickListener = clickListener;
     }
@@ -46,14 +45,13 @@ public class ImagesModule {
     /**
      *Nota los parametros del constructor del adaptador q no esten en el constructor deben ser proveeidos @Provider @Singleton  por un petodo providesXXXX
      * @param dataSet -
-     * @param imageLoader - provisto en  libs/di/LibsModule.providesImageLoader  puedo acceder a esto en tiempo de ejecion via  dagger
      * @param clickListener  - del constructor
      * @return
      */
     @Provides
     @Singleton
-    ImagesAdapter providesAdapter(List<Image> dataSet, ImageLoader imageLoader, OnItemClickListener clickListener){
-        return  new ImagesAdapter(dataSet, imageLoader, clickListener);
+    HashtagAdapter providesAdapter(List<Hashtag> dataSet, OnItemClickListener clickListener){
+        return  new HashtagAdapter(dataSet, clickListener);
     }
 
 
@@ -69,34 +67,35 @@ public class ImagesModule {
      */
     @Provides
     @Singleton
-    List<Image> providesItemList(){
-        return  new ArrayList<Image>();
+    List<Hashtag> providesItemList(){
+        return  new ArrayList<Hashtag>();
     }
 
     //    ======ImagesPresenter: Recibe como parametros, los mismos q su constructor======================================================
 
     @Provides
     @Singleton
-    ImagesPresenter providesImagesPresenter(ImagesView view, EventBus eventBus, ImagesInteractor interactor){
-        return  new ImagesPresenterImp(view, eventBus , interactor);
+    HashtagPresenter providesHashtagPresenter(HashtagView view, EventBus eventBus, HashtagInteractor interactor){
+        return  new HashtagPresenterImp(view, eventBus, interactor) {
+        };
     }
 
     @Provides
     @Singleton
-    ImagesView providesImagesView(){
+    HashtagView providesHashtagView(){
         return  this.view;
     }
 
     @Provides
     @Singleton
-    ImagesInteractor providesImagesInteractor(ImageRepository repository){
-        return  new ImagesInteractorImpl(repository);
+    HashtagInteractor providesImagesInteractor(HashtagRepository repository){
+        return  new HashtagInteractorImpl(repository);
     }
 
     @Provides
     @Singleton
-    ImageRepository providesImagesRepository(EventBus eventBus, CustomTwitterApiClient client){
-        return  new ImagesRepositoryImpl(eventBus, client);
+    HashtagRepository providesImagesRepository(EventBus eventBus, CustomTwitterApiClient client){
+        return new HashtagRepositoryImpl(eventBus, client);
     }
 
     @Provides
@@ -110,9 +109,5 @@ public class ImagesModule {
     Session providesTwitterSession(){
         return Twitter.getSessionManager().getActiveSession();
     }
-
-
-
-
 
 }

@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 import com.example.alice.twitterclient.LoginActivity;
 import com.example.alice.twitterclient.R;
-import com.example.alice.twitterclient.hashtags.HashTagsFragment;
+import com.example.alice.twitterclient.hashtags.ui.HashTagsFragment;
 import com.example.alice.twitterclient.images.ui.ImagesFragment;
 import com.example.alice.twitterclient.main.adapters.MainSectionPagerAdapter;
 import com.twitter.sdk.android.Twitter;

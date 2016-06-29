@@ -5,6 +5,6 @@ package com.example.alice.twitterclient.images;
  * Trae las imagenes de los TW  de internet
  */
 
-public interface ImagesRepository {
-    void  getImages();
+public interface ImageRepository {
+    void getImages();
 }

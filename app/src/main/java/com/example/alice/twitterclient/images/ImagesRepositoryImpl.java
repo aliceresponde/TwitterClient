@@ -1,7 +1,5 @@
 package com.example.alice.twitterclient.images;
 
-import android.provider.MediaStore;
-
 import com.example.alice.twitterclient.api.CustomTwitterApiClient;
 import com.example.alice.twitterclient.entities.Image;
 import com.example.alice.twitterclient.images.events.ImagesEvent;
@@ -22,7 +20,7 @@ import java.util.List;
  * Trae las imagenes de los TW  de internet
  */
 
-public class ImagesRepositoryImpl implements ImagesRepository {
+public class ImagesRepositoryImpl implements ImageRepository {
     private EventBus eventBus;
     private CustomTwitterApiClient client;
     private final static  int TWEET_COUNT =100;  //# to  retreive

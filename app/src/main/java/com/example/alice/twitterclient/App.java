@@ -3,7 +3,10 @@ package com.example.alice.twitterclient;
 import android.app.Application;
 import android.support.v4.app.Fragment;
 
-
+import com.example.alice.twitterclient.hashtags.di.DaggerHashtagComponent;
+import com.example.alice.twitterclient.hashtags.di.HashtagComponent;
+import com.example.alice.twitterclient.hashtags.di.HashtagModule;
+import com.example.alice.twitterclient.hashtags.ui.HashtagView;
 import com.example.alice.twitterclient.images.di.DaggerImagesComponent;
 import com.example.alice.twitterclient.images.di.ImagesComponent;
 import com.example.alice.twitterclient.images.di.ImagesModule;
@@ -44,6 +47,13 @@ public class App extends Application {
                 .libsModule(new LibsModule(fragment))
                 .imagesModule(new ImagesModule(view, clickListener))
                 .build();
+    }
 
+    public HashtagComponent getHashtagComponent(HashtagView view , com.example.alice.twitterclient.hashtags.ui.adapters.OnItemClickListener clickListener){
+        return DaggerHashtagComponent
+                .builder()
+                .libsModule(new LibsModule(null))
+                .hashtagModule(new HashtagModule(view, clickListener))
+                .build();
     }
 }

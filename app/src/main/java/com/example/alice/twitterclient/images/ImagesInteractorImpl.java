@@ -7,10 +7,10 @@ package com.example.alice.twitterclient.images;
 public class ImagesInteractorImpl implements  ImagesInteractor{
 
 
-    ImagesRepository repository;
+    ImageRepository repository;
 
 
-    public ImagesInteractorImpl(ImagesRepository repository) {
+    public ImagesInteractorImpl(ImageRepository repository) {
         this.repository = repository;
     }
 
